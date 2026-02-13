@@ -1,0 +1,21 @@
+{
+  "servers": [
+    {
+      "name": "playwright-browser",
+      "enabled": false,
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["@anthropic-ai/playwright-mcp"]
+    },
+    {
+      "name": "github",
+      "enabled": false,
+      "transport": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  ]
+}

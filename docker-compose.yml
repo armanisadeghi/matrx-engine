@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    environment:
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+
+  engine:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./workspace:/workspace
+      - ./.claude:/app/.claude
+    environment:
+      - LITELLM_PROXY_URL=http://litellm:4000
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - WORKSPACE_PATH=/workspace
+      - USE_LITELLM_PROXY=${USE_LITELLM_PROXY:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-claude-sonnet-4-5}
+      - AUTH_ENABLED=${AUTH_ENABLED:-false}
+    depends_on:
+      - litellm

@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+uv.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Workspace (agent execution artifacts)
+workspace/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
