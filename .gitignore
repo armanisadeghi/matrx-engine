@@ -35,6 +35,13 @@ workspace/
 
 # Test / coverage
 .pytest_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 .mypy_cache/
+
+# Matrx config (contains API keys)
+.matrx.json
+.matrx-ship.json
+.matrx-tools.conf
+.env-backups/

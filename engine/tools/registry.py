@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import importlib
 import pkgutil
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from engine.utils.logging import get_logger
 
